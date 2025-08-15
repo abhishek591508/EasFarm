@@ -1,6 +1,6 @@
 const express = require('express');
 require('dotenv').config();
-
+const auth_user = require('./src/routes/userAuth');
 const dbConnect = require('./src/config/db');
 const redisClient = require('./src/config/redis');
 
@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 
-
+app.use('/user', auth_user);
 
 
 
@@ -39,3 +39,18 @@ Initialisation();
 // console.log("This is normal output"); // stdout
 // console.error("Something went wrong!"); // stderr
 // read again difference between console.log and console.error
+
+
+/*
+
+    /src
+        /config       # DB, env, cloud setup
+        /controllers # Business logic
+        /routes      # API endpoints
+        /middlewares # Auth, validation, etc.
+        /models      # DB schemas
+        /services    # Reusable logic
+        /utils       # Helpers, constants
+        /tests       # Unit & integration tests
+
+*/
