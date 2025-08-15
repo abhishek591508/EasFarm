@@ -1,0 +1,23 @@
+# Node.js dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+
+# Build outputs (any depth)
+build/
+dist/
+
+# OS files
+.DS_Store
+
+# Editor settings
+.vscode/
+.idea/
+
+
+# /node_modules/ means is root ki node_modules ko track karega to not upload
