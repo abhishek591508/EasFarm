@@ -53,6 +53,14 @@ const farmerSchema = new mongoose.Schema({
         },
         required: false,
     },
+    emailId: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+        lowercase: true,
+        immutable: true,
+    },
     allowDataSharing: {
         type: Boolean,
         required: false,
