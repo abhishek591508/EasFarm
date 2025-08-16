@@ -2,12 +2,17 @@ const express = require('express');
 require('dotenv').config();
 const auth_user = require('./src/routes/userAuth');
 const dbConnect = require('./src/config/db');
-const redisClient = require('./src/config/redis');
+const cookieParser = require('cookie-parser');
+const redisClient = require("./src/config/redis");
 
 
 // https://chat.deepseek.com/a/chat/s/4b529dc7-8a93-4a2e-830d-835bf0acf909 steps to build this project
 const app = express();
+
+
 app.use(express.json());
+app.use(cookieParser());
+
 
 
 app.use('/user', auth_user);
@@ -23,7 +28,7 @@ app.use('/user', auth_user);
 
 const Initialisation = async() => {
     try {
-        await Promise.all([dbConnect(), redisClient()]);
+        await Promise.all([dbConnect(), redisClient.connect()]);
 
         app.listen(process.env.PORT, () => {
             console.log(`Server is running at post ${process.env.port}`);

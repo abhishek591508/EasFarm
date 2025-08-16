@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Farmer = require('../models/farmerSchema')
+
+
 const Login = async(req, res) => {
     try {
         const { mobileNumber, password } = req.body;
@@ -34,11 +36,11 @@ const Login = async(req, res) => {
         return res.status(200).send({
             success: true,
             message: "Login Successfully",
-            token: token // Sending the token in the response is also a good practice
+            token: token
         });
 
     } catch (err) {
-        console.error(err); // It's good practice to log the full error
+        console.error(err);
         res.status(500).send({
             success: false,
             message: "Error in Login: " + err.message
