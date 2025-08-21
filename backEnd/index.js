@@ -1,6 +1,8 @@
 const express = require('express');
 require('dotenv').config();
 const auth_user = require('./src/routes/userAuth');
+const homepage = require('./src/routes/homeRoute');
+const service = require('./src/routes/serviceProvider')
 const dbConnect = require('./src/config/db');
 const cookieParser = require('cookie-parser');
 const redisClient = require("./src/config/redis");
@@ -16,7 +18,8 @@ app.use(cookieParser());
 
 
 app.use('/user', auth_user);
-
+app.use('/home', homepage);
+app.use('/service',service);
 
 
 

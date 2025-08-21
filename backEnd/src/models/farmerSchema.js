@@ -48,10 +48,14 @@ const farmerSchema = new mongoose.Schema({
     },
     gpsLocation: {
         type: {
-            lat: { type: Number, required: false },
-            lng: { type: Number, required: false },
+            type: String,
+            enum: ['Point'],   // must be "Point"
+            required: true
         },
-        required: false,
+        coordinates: {
+            type: [Number],    // [longitude, latitude]
+            required: true
+        }
     },
     emailId: {
         type: String,
@@ -84,6 +88,8 @@ const farmerSchema = new mongoose.Schema({
         },
     },
 }, { timestamps: true });
+
+farmerSchema.index({ gpsLocation: "2dsphere" });
 
 
 const farmers = mongoose.model('farmer', farmerSchema);

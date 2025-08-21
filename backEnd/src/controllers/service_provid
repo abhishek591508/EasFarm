@@ -1,0 +1,264 @@
+// const express = require('express');
+// const mongoose = require('mongoose');
+// const Machine = require('../models/machinerySchrms'); // ✅ use consistent name
+// const Tools = require('../models/machinerySchrms');
+
+// // Allowed sorting fields
+// const allowedSorts = {
+//     rating: 'rating',
+//     price: 'price',
+//     category: 'category',
+//     availability: 'availability',
+//     createdAt: 'createdAt'
+// };
+
+
+
+// // Utility: Basic sanitization
+// const sanitize = (str) => {
+//     if (typeof str !== "string") return str;
+//     return str.replace(/[<>$]/g, ""); // prevent XSS/injection
+// };
+
+
+// // ----------------------------
+// // Multiple Filters + One Sort
+// // ----------------------------
+// const multipleFilterAndOneSortingOnData = async (req, res) => {
+//     try {
+//         const {
+//             latitude,
+//             longitude,
+//             maxDistance,
+//             category,
+//             minRating,
+//             availability,
+//             minPrice,
+//             maxPrice,
+//             sortBy = 'createdAt',
+//             order = 'desc',
+//             page = 1,
+//             limit = 10
+//         } = req.query;
+
+//         const pageNum = Number(page);
+//         const limitNum = Number(limit);
+//         const skip = (pageNum - 1) * limitNum;
+
+//         // ----------------------------
+//         // 1. Build Filters
+//         // ----------------------------
+//         const query = {};
+//         if (category) query.category = category;
+//         if (minRating) query.rating = { $gte: Number(minRating) };
+//         if (availability !== undefined) query.availability = availability === 'true';
+//         if (minPrice || maxPrice) {
+//             query.price = {};
+//             if (minPrice) query.price.$gte = Number(minPrice);
+//             if (maxPrice) query.price.$lte = Number(maxPrice);
+//         }
+
+//         let providers;
+//         let total;
+
+//         // ----------------------------
+//         // 2. Sorting (Distance vs Normal Field)
+//         // ----------------------------
+//         if (sortBy === 'distance' && latitude && longitude) {
+//             const pipeline = [
+//                 {
+//                     $geoNear: {
+//                         near: {
+//                             type: "Point",
+//                             coordinates: [Number(longitude), Number(latitude)]
+//                         },
+//                         distanceField: "distance",
+//                         spherical: true,
+//                         ...(maxDistance && { maxDistance: Number(maxDistance) * 1000 })
+//                     }
+//                 },
+//                 { $match: query },
+//                 { $sort: { distance: order === 'asc' ? 1 : -1 } },
+//                 { $skip: skip },
+//                 { $limit: limitNum }
+//             ];
+
+//             providers = await Machine.aggregate(pipeline);
+//             total = await Machine.countDocuments(query);
+
+//         } else {
+//             const sortField = allowedSorts[sortBy] || 'createdAt';
+//             const sortOrder = order === 'asc' ? 1 : -1;
+
+//             providers = await Machine.find(query)
+//                 .sort({ [sortField]: sortOrder })
+//                 .skip(skip)
+//                 .limit(limitNum);
+
+//             total = await Machine.countDocuments(query);
+//         }
+
+//         // ----------------------------
+//         // 3. Response
+//         // ----------------------------
+//         res.status(200).json({
+//             success: true,
+//             page: pageNum,
+//             totalPages: Math.ceil(total / limitNum),
+//             totalResults: total,
+//             results: providers
+//         });
+
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ success: false, message: 'Server Error' });
+//     }
+// };
+
+
+
+// // ----------------------------
+// // Register Machine/Tool
+// // ----------------------------
+// const registerMachine = async (req, res) => {
+//     try {
+//         const {
+//             name,
+//             description,
+//             image,
+//             category,
+//             availability,   // <-- made consistent
+//             rentPrice,
+//             rentUnit,
+//             location,
+//             owner,
+//         } = req.body;
+
+//         // ----------------------------
+//         // 1. Basic Validation
+//         // ----------------------------
+//         if (!name || !category) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: "Name and category are required"
+//             });
+//         }
+
+//         if (!location || !location.coordinates || location.coordinates.length !== 2) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: "Location must include valid coordinates [longitude, latitude]"
+//             });
+//         }
+
+//         if (rentPrice && rentPrice < 0) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: "Rent price must be a positive number"
+//             });
+//         }
+
+//         if (rentUnit && !["per_day", "per_hour"].includes(rentUnit)) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: "Invalid rent unit"
+//             });
+//         }
+
+//         if (!["Tractor", "Plough", "Harvester", "Other"].includes(category)) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: "Invalid category"
+//             });
+//         }
+
+//         // ----------------------------
+//         // 2. Sanitize Input
+//         // ----------------------------
+//         const toolData = {
+//             name: sanitize(name),
+//             description: sanitize(description),
+//             image: sanitize(image),
+//             category,
+//             availability: availability ? true : false,
+//             rentPrice,
+//             rentUnit: rentUnit || "per_day",
+//             location: {
+//                 type: "Point",
+//                 coordinates: [
+//                     Number(location.coordinates[0]), // longitude
+//                     Number(location.coordinates[1]) // latitude
+//                 ]
+//             },
+//             owner: {
+//                 name: sanitize(owner?.name),
+//                 contact: sanitize(owner?.contact),
+//                 farmerId: owner?.farmerId
+//             }
+//         };
+
+//         // ----------------------------
+//         // 3. Save to DB
+//         // ----------------------------
+//         const newTool = new Tools(toolData);
+//         await newTool.save();
+
+//         res.status(201).json({
+//             success: true,
+//             message: "Tool registered successfully",
+//             data: newTool
+//         });
+
+//     } catch (error) {
+//         console.error("Error registering tool:", error);
+//         res.status(500).json({
+//             success: false,
+//             message: "Server Error. Could not register tool."
+//         });
+//     }
+// };
+
+
+
+// module.exports = { multipleFilterAndOneSortingOnData, registerMachine };
+
+
+// // step1 : basic pagination
+// // step2 : add filters
+// // step3 : add sorting
+// // step4 : allow multiple field sorting
+
+
+// // ✅ API: GET /api/service-providers?page=1&limit=10
+// // GET /api/service-providers?latitude=28.61&longitude=77.20&maxDistance=10&category=Tractor&minRating=4&availability=true&minPrice=500&maxPrice=2000&page=1&limit=10
+// // GET /api/service-providers?sortBy=price&order=asc&page=1&limit=10
+
+
+
+
+// // ----------------------------
+// // Basic Pagination Only
+// // ----------------------------
+// // const getlistOfServiceProvider = async(req, res) => {
+// //     try {
+// //         const { page = 1, limit = 10 } = req.query;
+// //         const pageNum = Number(page);
+// //         const limitNum = Number(limit);
+// //         const skip = (pageNum - 1) * limitNum;
+
+// //         const providers = await Machine.find().skip(skip).limit(limitNum);
+// //         const total = await Machine.countDocuments();
+
+// //         res.status(200).json({
+// //             success: true,
+// //             page: pageNum,
+// //             totalPages: Math.ceil(total / limitNum),
+// //             totalResults: total,
+// //             results: providers
+// //         });
+
+// //     } catch (err) {
+// //         console.error(err);
+// //         res.status(500).json({ success: false, message: 'Server Error' });
+// //     }
+// // };
