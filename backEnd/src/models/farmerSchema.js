@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { service_provider } = require('./machinerySchrms');
 
 const farmerSchema = new mongoose.Schema({
 
@@ -70,6 +71,31 @@ const farmerSchema = new mongoose.Schema({
         required: false,
         default: false,
     },
+    myOrders: [
+        {
+            orderType: {
+                type: String,
+                enum: ["Seed", "Fertiliser", "Pesticide", "ToolRent"],
+                required: true
+            },
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "SeedsFertilisers"  // link to seed/fertiliser collection
+            },
+            tool: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "tools"  // link to tools collection if rented
+            },
+            quantity: { type: Number, default: 1 },
+            price: { type: Number, required: true }, // final price paid after discount
+            serviceProvider: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "service-provider",
+                required: true
+            },
+            purchasedAt: { type: Date, default: Date.now }
+        }
+    ],
     role: {
         type: String,
         enum: ['farmer', 'serprovider', 'admin'],

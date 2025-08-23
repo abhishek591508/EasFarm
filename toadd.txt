@@ -147,3 +147,16 @@ HTTP STATUS CODES REFERENCE
 */
 
 ****************************************************************************************************************************************************
+
+$pipeline Stage	Purpose. why?
+
+$match	Filters documents (like SQL WHERE)
+$lookup	Joins data from another collection (like SQL JOIN)
+$unwind	Flattens arrays (e.g., serviceProvider array into single object)
+$sort	Orders documents by a field (e.g., price, rating, weight)
+$skip	Skips documents for pagination
+$limit	Limits number of documents returned
+$project	Selects specific fields to return (like SQL SELECT name, price)
+
+****************************************************************************************************************************************************
+

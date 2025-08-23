@@ -17,6 +17,7 @@ const seedsFertiliserSchema = new mongoose.Schema({
     weight: { type: Number }, // e.g., 10
     weightUnit: { type: String, enum: ["kg", "g", "litre", "ml", "packet"], default: "kg" },
     packagingType: { type: String }, // e.g., "Bag", "Bottle", "Sachet"
+    stockQuantity: { type: Number, default: 0 , required: true},
 
     // Pricing
     price: { type: Number, required: true }, // e.g., 1200 (₹)
@@ -32,16 +33,15 @@ const seedsFertiliserSchema = new mongoose.Schema({
 
     // Seller / Distributor info
     seller: {
-        name: { type: String },
-        contact: { type: String },
-        location: { type: String },
-        farmerId: { type: mongoose.Schema.Types.ObjectId, ref: "Farmer" }
+        name: { type: String, required: true },
+        contact: { type: String, required: true },
+        serviceProvider: { type: mongoose.Schema.Types.ObjectId, ref: "service-provider", required: true }
     },
 
     // Reviews & Ratings
     rating: { type: Number, min: 0, max: 5, default: 0 },
     reviews: [{
-        user: { type: mongoose.Schema.Types.ObjectId, ref: "Farmer" },
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "farmer" },
         comment: String,
         rating: { type: Number, min: 0, max: 5 }
     }],
@@ -54,4 +54,7 @@ const seedsFertiliserSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-module.exports = mongoose.model('SeedsFertilisers', seedsFertiliserSchema);
+const s_and_f =  mongoose.model('SeedsFertilisers', seedsFertiliserSchema);
+module.exports = {s_and_f};
+
+
