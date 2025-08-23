@@ -331,3 +331,5 @@ const getAllSeedFertiliserProducts = async (req, res) => {
 
 
 module.exports = {sellSeedAndFertiliser , QuantityManipulator,updatePriceAndDisOfSeedAndFertiliser,buySeedAndFertiliser,removeProduct,getAllSeedFertiliserProducts};
+
+// https://copilot.microsoft.com/chats/bc7ZohwfgXWYuf5LHaTJz
