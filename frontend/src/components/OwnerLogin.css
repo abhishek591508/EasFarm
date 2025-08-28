@@ -1,0 +1,70 @@
+/* Container for the form */
+.owner-form-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Heading */
+.owner-form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Label styling */
+.owner-form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Input and dropdown fields */
+.owner-form-container input,
+.owner-form-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.owner-form-container input:focus,
+.owner-form-container select:focus {
+  border-color: #007BFF;
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit button */
+.owner-form-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.owner-form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Small screen responsiveness */
+@media (max-width: 500px) {
+  .owner-form-container {
+    width: 90%;
+    margin: 20px auto;
+  }
+}

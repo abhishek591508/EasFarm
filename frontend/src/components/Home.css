@@ -1,0 +1,178 @@
+.home-container {
+min-height: 100vh;
+background-color: rgb(118, 118, 247);
+padding: 40px;
+padding-top: 20px;
+font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+
+.home-title {
+text-align: left;
+margin-bottom: 12px;
+font-size: 22px;
+}
+
+
+.cards-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 12px;
+margin-bottom: 18px;
+}
+
+
+.card {
+border: 2px solid #0e4c9d;
+background: rgb(237, 195, 195);
+padding: 20px 24px;
+max-width: 250px;
+margin-right: 22px;
+border-radius: 10px;
+text-align: left;
+cursor: pointer;
+transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+
+.card:hover {
+transform: translateY(-4px);
+box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+background: rgb(239, 177, 177);
+}
+
+
+.card:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+}
+
+
+.card--active {
+border-width: 2px;
+border-color: #000909;
+box-shadow: 0 8px 24px rgba(14,165,164,0.08);
+}
+
+
+.card__title {
+font-weight: 600;
+margin-bottom: 6px;
+}
+
+
+.card__desc {
+font-size: 13px;
+color: #475569;
+}
+
+
+.results-area {
+background: #ccc9ef;
+border: 1px solid rgb(204, 225, 233);
+padding: 14px;
+border-radius: 10px;
+max-width: 95%;
+margin-right: 20px;
+margin-top: 80px;
+
+}
+
+
+.results-title {
+margin: 0 0 10px 0;
+font-size: 18px;
+color: rgb(62, 62, 250);
+margin-left: 6px;
+}
+
+
+.loading, .error, .empty {
+padding: 12px 8px;
+color: #334155;
+}
+
+
+.result-list {
+list-style: none;
+padding: 0;
+margin: 0;
+display: grid;
+gap: 8px;
+}
+
+
+.result-item {
+border: 1px solid #e6eef8;
+padding: 10px;
+border-radius: 8px;
+}
+
+
+.result-item__title {
+font-weight: 600;
+}
+
+
+.result-item__meta {
+font-size: 13px;
+color: #475569;
+margin-top: 4px;
+}
+
+
+.result-item__sub {
+font-size: 13px;
+color: #64748b;
+margin-top: 6px;
+}
+
+.navBtn{
+    padding: 30px;
+    border-radius: 15px;
+    background-color: lightblue;
+    margin-top: 10px;
+    cursor: pointer;
+    margin: 10px;
+
+}
+
+
+.home-card{
+    background-color: rgb(164, 164, 232);
+    padding: 30px;
+    border-radius: 20px;
+    /* align-items: center;
+    max-width: 95%;
+    margin-left: 2.5%; */
+    transform: translateY(-2);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.3s ease-out;
+}
+
+@keyframes fadeInUp {
+    from{
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.welcome-abhi{
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.8s ease-out;
+
+}
+.twoBtn{
+    display: flex;
+    justify-content: center;   
+    flex-wrap: wrap-reverse;
+}
+
+.notlog-welcome{
+    text-align: center;
+    margin: 10px;
+}
