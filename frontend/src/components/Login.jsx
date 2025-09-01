@@ -52,6 +52,8 @@ function Login() {
     if (isLogin=='login') {
       console.log('Login attempt:', { mobileNumber: formData.mobileNumber, emailId: formData.emailId, password: formData.password })
       // Add your login logic here
+      console.log("API URL:", import.meta.env.VITE_API_URL);
+
       const resp = await fetch(`${import.meta.env.VITE_API_URL}/user/sendotp`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
