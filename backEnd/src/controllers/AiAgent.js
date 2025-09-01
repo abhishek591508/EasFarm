@@ -10,11 +10,9 @@ const MAX_CONTEXT = 10;
 
 const aiAgent = async (req, res) => {
   try {
-    const {
-      userName = "guest",
-      problem,
-    } = req.body;
-
+  
+    const userName = req.body.query.userName === undefined ? 'guest' : req.body.query.userName ;
+    const problem = req.body.query.problem;
     if (!userHistories[userName]) {
       userHistories[userName] = [];
     }
@@ -38,7 +36,17 @@ const aiAgent = async (req, res) => {
     const chat = ai.chats.create({
       model: "gemini-2.5-flash",
       history: userHistories[userName],
-      // configure it
+      config: {
+        systemInstruction: `
+          You are easFarm-AgriBot, an intelligent AI assistant created by easFarm.
+          Your mission is to support farmers and agronomists by providing accurate, real-time insights 
+          on crop health, weather forecasts, soil conditions, and yield predictions.
+          You communicate clearly, respectfully, and in a helpful tone, using agricultural terminology 
+          when appropriate. Always prioritize sustainability, precision farming, and local relevance.
+
+          Always provide answer in less than 1-2 line
+        `,
+      },
     });
 
     const stream = await chat.sendMessageStream({

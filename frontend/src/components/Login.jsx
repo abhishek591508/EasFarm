@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import './Login.css'
 import { useNavigate } from 'react-router-dom'
+import Header from './Header'
+import Footer from './Footer'
 
 function Login() {
   const [isLogin, setIsLogin] = useState('login')
+  const [location, setLocation] = useState('')
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    emailId: '',
     password: '',
     confirmPassword: '',
     fullName: '',
@@ -16,9 +19,9 @@ function Login() {
     state: '',
     pincode: '',
     alternateMobile: '',
-    gpsLocation: '',
+    gpsLocation:'',  //  object, not string
     allowDataSharing: false,
-    role: 'user',
+    role: 'farmer',
     acceptTerms: false
   })
 
@@ -29,20 +32,38 @@ function Login() {
     const checked = e.target.checked;
     console.log(name, value, type, checked);
 
-    setFormData(prev => ({
+    if (name === "gpsLocation") {
+      setFormData(prev => ({
+        ...prev,
+        gpsLocation : value
+      }))
+      
+    } 
+    else{
+      setFormData(prev => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
-    }))
+      }))
+    }
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
     if (isLogin=='login') {
-      console.log('Login attempt:', { mobileNumber: formData.mobileNumber, email: formData.email, password: formData.password })
+      console.log('Login attempt:', { mobileNumber: formData.mobileNumber, emailId: formData.emailId, password: formData.password })
       // Add your login logic here
-      navigate('/otpPage');
+      const resp = await fetch("http://localhost:5000/user/sendotp",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({emailId:formData.emailId})
+      })
+      if(resp.ok){
+        const msg = await resp.text();
+        navigate('/otpPage', {state:{emailId:formData.emailId}});
+        alert(msg);
+      }
     } 
-    else if(isLogin=='submit'){
+    else if(isLogin=='signup'){
       if (formData.password !== formData.confirmPassword) {
         alert('Passwords do not match!')
         return
@@ -51,8 +72,36 @@ function Login() {
         alert('Please accept the terms and conditions!')
         return
       }
-      console.log('Signup attempt:', formData)
+      const [lat, lng] = formData.gpsLocation.split(",").map(Number); // "34.0836,74.7973" → [34.0836, 74.7973]
+      const payload={
+        ...formData,
+        gpsLocation:{type:"Point", coordinates:[lng, lat]}
+      }
+      
+      console.log('Signup attempt:', payload)
       // Add your signup logic here
+      try{
+        const res = await fetch('http://localhost:5000/user/signup',{
+          method:'POST',
+          headers:{'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+
+        if(data.success){
+          alert(data.message);
+          // navigate('/login')
+          setIsLogin('login')
+        }
+        else{
+          alert(data.message || 'Signup failed');
+        }
+      }
+      catch(err){
+        console.error('Signup error:', err);
+        alert('Something went wrong! Please try again.');
+      }
     }
   }
 
@@ -60,7 +109,7 @@ function Login() {
     if(isLogin === 'login') setIsLogin('signup');
     else if(isLogin === 'signup') setIsLogin('login')
     setFormData({
-      email: '',
+      emailId: '',
       password: '',
       confirmPassword: '',
       fullName: '',
@@ -72,15 +121,17 @@ function Login() {
       alternateMobile: '',
       gpsLocation: '',
       allowDataSharing: false,
-      role: 'user',
+      role: 'farmer',
       acceptTerms: false
     })
   }
 
   return (
+    <div className='login-div-out'>
+      <Header/>
     <div className="app">
       <div className="auth-container">
-        {isLogin == 'login' && <div><h1 className='hello-farmer'>Hello Farmer! Welcome to 'EasFarm'</h1></div>}
+        {/* {isLogin == 'login' && <div><h1 className='hello-farmer'>Hello Farmer! Welcome to 'EasFarm'</h1></div>} */}
 
         {(isLogin === 'signup'|| isLogin==='login') && <div className="auth-card">
           <div className="auth-header">
@@ -100,7 +151,7 @@ function Login() {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     placeholder="Enter your full name"
-                    required
+                    // required
                   />
                 </div>
               </>
@@ -114,7 +165,7 @@ function Login() {
                     value={formData.mobileNumber}
                     onChange={handleInputChange}
                     placeholder="Enter your mobile number"
-                    required
+                    // required
                   />
                 </div>
             {isLogin == 'signup' && (
@@ -128,7 +179,7 @@ function Login() {
                     value={formData.villageOrCity}
                     onChange={handleInputChange}
                     placeholder="Enter your village or city"
-                    required
+                    // required
                   />
                 </div>
 
@@ -141,7 +192,7 @@ function Login() {
                     value={formData.district}
                     onChange={handleInputChange}
                     placeholder="Enter your district"
-                    required
+                    // required
                   />
                 </div>
 
@@ -154,7 +205,7 @@ function Login() {
                     value={formData.state}
                     onChange={handleInputChange}
                     placeholder="Enter your state"
-                    required
+                    // required
                   />
                 </div>
 
@@ -167,7 +218,7 @@ function Login() {
                     value={formData.pincode}
                     onChange={handleInputChange}
                     placeholder="Enter your pincode"
-                    required
+                    // required
                   />
                 </div>
 
@@ -191,7 +242,7 @@ function Login() {
                     name="gpsLocation"
                     value={formData.gpsLocation}
                     onChange={handleInputChange}
-                    placeholder="Enter GPS coordinates (optional)"
+                    placeholder="Enter GPS. eg - (32.04,45.21)"
                   />
                 </div>
 
@@ -204,24 +255,24 @@ function Login() {
                     onChange={handleInputChange}
                     className="form-select"
                   >
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
-                    <option value="moderator">Moderator</option>
+                    <option value="farmer">farmer</option>
+                    <option value="admin">admin</option>
+                    <option value="serprovider">serprovider</option>
                   </select>
                 </div>
               </>
             )}
 
             <div className="form-group">
-              <label htmlFor="email">Email *</label>
+              <label htmlFor="emailId">EmailId *</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
+                type="emailId"
+                id="emailId"
+                name="emailId"
+                value={formData.emailId}
                 onChange={handleInputChange}
-                placeholder="Enter your email"
-                required
+                placeholder="Enter your emailId"
+                // required
               />
             </div>
 
@@ -234,7 +285,7 @@ function Login() {
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Enter your password"
-                required
+                // required
               />
             </div>
 
@@ -248,7 +299,7 @@ function Login() {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="Confirm your password"
-                  required
+                  // required
                 />
               </div>
             )}
@@ -275,7 +326,7 @@ function Login() {
                       name="acceptTerms"
                       checked={formData.acceptTerms}
                       onChange={handleInputChange}
-                      required
+                      // required
                     />
                     <span className="checkmark"></span>
                     I accept the terms and conditions *
@@ -290,7 +341,7 @@ function Login() {
           </form>
 
           <div className="auth-footer">
-            <p>
+            <p className='bottom-para'>
               {(isLogin==='login') ? "Don't have an account? " : "Already have an account? "}
               <button onClick={toggleMode} className="toggle-btn">
                 {isLogin==='login' ? 'Sign Up' : 'Sign In'}
@@ -298,7 +349,7 @@ function Login() {
             </p>
 
 
-            <p>
+            <p className='bottom-para'>
               {(isLogin ==='login') ? "I am a owner ": "Owner Register Here "}
               <button className='ownerBtn' onClick={()=>{navigate('/ownerlogin')}}>
                 Owner Register
@@ -309,6 +360,8 @@ function Login() {
         </div>} {/*auth card ends here! */}
         
       </div>
+    </div>
+    <Footer/>
     </div>
   )
 }

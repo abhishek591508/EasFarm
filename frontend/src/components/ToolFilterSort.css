@@ -1,0 +1,44 @@
+.filter-sort-container {
+  display: flex;
+  gap: 5vh;
+  justify-content: end;
+  flex-wrap: wrap;
+}
+
+.filter-section{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.sort-section {
+  display: flex;
+  flex-direction: column;
+}
+
+select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  min-width: 180px;
+  font-size: 14px;
+}
+
+select[multiple] {
+  height: 100px;
+}
+
+.apply-btn {
+  padding: 8px 16px;
+  background-color: #53cb57;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  height: fit-content;
+  margin-top: 2.5vh;
+}
+
+.apply-btn:hover {
+  background-color: #45a049;
+}

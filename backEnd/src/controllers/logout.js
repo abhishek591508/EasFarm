@@ -9,7 +9,10 @@ const Logout = async(req, res) => {
     await redisClient.set(`blacklist:${req.cookies.token}`, "truee", { EX: ttl });
 
     res.clearCookie("token");
-    res.status(200).send("Logout successful");
+    res.status(200).send({
+        success:true,
+        message:"Logout successful"
+    });
 }
 
 module.exports = Logout;

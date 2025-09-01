@@ -51,11 +51,11 @@ const farmerSchema = new mongoose.Schema({
         type: {
             type: String,
             enum: ['Point'],   // must be "Point"
-            required: true
+            // required: true
         },
         coordinates: {
             type: [Number],    // [longitude, latitude]
-            required: true
+            // required: true
         }
     },
     emailId: {

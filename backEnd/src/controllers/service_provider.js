@@ -149,7 +149,7 @@ const getAllTools = async(req,res)=>{ // with sorting filtering , in normal retu
             lat,
             lng,
             maxDistance, // in meters
-            page,
+            page = 0,
             limit
 
         } = req.query;
@@ -160,7 +160,7 @@ const getAllTools = async(req,res)=>{ // with sorting filtering , in normal retu
 
 
         let Page = Number(page) || 1;
-        let Limit = Number(limit) || 10;
+        let Limit = Number(limit) || 100;
         let skip = (Page - 1) * Limit;
 
 

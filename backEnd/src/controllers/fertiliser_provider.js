@@ -248,7 +248,7 @@ const getAllSeedFertiliserProducts = async (req, res) => {
 
     // Defaults
     const Page = Number(page) || 1;
-    const Limit = Number(limit) || 10;
+    const Limit = Number(limit) || 100;
     const skip = (Page - 1) * Limit;
     order = order === "asc" ? 1 : -1;
 

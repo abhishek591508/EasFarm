@@ -61,14 +61,14 @@ const validateFarmerInput = async(data) => {
         addError('alternateMobile', 'Please provide a valid 10-digit mobile number');
     }
 
-    if (data.gpsLocation) {
-        if (typeof data.gpsLocation.lat !== 'number' || !validator.isFloat(data.gpsLocation.lat.toString(), { min: -90, max: 90 })) {
-            addError('gpsLocation.lat', 'Latitude must be between -90 and 90');
-        }
-        if (typeof data.gpsLocation.lng !== 'number' || !validator.isFloat(data.gpsLocation.lng.toString(), { min: -180, max: 180 })) {
-            addError('gpsLocation.lng', 'Longitude must be between -180 and 180');
-        }
-    }
+    // if (data.gpsLocation) {
+    //     if (typeof data.gpsLocation.lat !== 'number' || !validator.isFloat(data.gpsLocation.lat.toString(), { min: -90, max: 90 })) {
+    //         addError('gpsLocation.lat', 'Latitude must be between -90 and 90');
+    //     }
+    //     if (typeof data.gpsLocation.lng !== 'number' || !validator.isFloat(data.gpsLocation.lng.toString(), { min: -180, max: 180 })) {
+    //         addError('gpsLocation.lng', 'Longitude must be between -180 and 180');
+    //     }
+    // }
 
     if (data.allowDataSharing !== undefined && typeof data.allowDataSharing !== 'boolean') {
         addError('allowDataSharing', 'Allow data sharing must be a boolean value');

@@ -8,11 +8,11 @@ const {sellSeedAndFertiliser , QuantityManipulator,updatePriceAndDisOfSeedAndFer
 router.post('/provider/register',register);
 router.post('/tools/register',validSurviceProvider,registerTools);
 router.get('/specific-provider/tools/:providerId',validUser,getSpecificProviderTools);
-router.get('/get-all-tools',validUser,getAllTools);
+router.get('/get-all-tools',getAllTools); //validUser
 
 
 
-router.post("/sell", sellSeedAndFertiliser);
+router.post("/sell",validUser, sellSeedAndFertiliser);
 router.post('/quantity-manipulate',QuantityManipulator);
 router.put("/product/:productId/price-discount", updatePriceAndDisOfSeedAndFertiliser);
 router.post("/buy", buySeedAndFertiliser);

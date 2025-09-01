@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #242a5d; /* earthy green */
+  color: white;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 10px;
+  box-shadow: 1px 1px 10px hsl(218, 86%, 84%);
+}
+
+.header__logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.header__nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.1s;
+}
+
+.header__nav a:hover, 
+.header__logo:hover {
+  color: #b0e3ff; /* warm yellow highlight */
+}
+
+.login-btn,
+.logout-btn {
+  background: rgb(75, 98, 157);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.login-btn:hover,
+.logout-btn:hover {
+  background: #3a4a95;
+  color: #000790;
+}

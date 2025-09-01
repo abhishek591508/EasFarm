@@ -1,0 +1,172 @@
+.about-us-container {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.about-hero {
+  background: linear-gradient(135deg, #007896 0%, #0d084e 100%);
+  color: rgb(204, 203, 203);
+  text-align: center;
+  padding: 60px 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.about-hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.about-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.about-content {
+  padding: 40px 0;
+}
+
+.mission-section,
+.what-we-do,
+.values-section,
+.contact-section {
+  margin-bottom: 60px;
+}
+
+.mission-section h2,
+.what-we-do h2,
+.values-section h2,
+.contact-section h2 {
+  color: #0d084e;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.mission-section p {
+  font-size: 1.1rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #666;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card {
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card h3 {
+  color: #0d084e;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.service-card p {
+  color: #666;
+  line-height: 1.5;
+}
+
+.values-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.value-item {
+  text-align: center;
+  padding: 20px;
+}
+
+.value-item h4 {
+  color: #0d084e;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.value-item p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.contact-section {
+  background: #f8f9fa;
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.contact-section p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.contact-info {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.contact-info p {
+  margin: 10px 0;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .about-hero p {
+    font-size: 1rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .values-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .contact-section {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-us-container {
+    padding: 0 15px;
+  }
+  
+  .about-hero {
+    padding: 40px 15px;
+  }
+  
+  .service-card,
+  .value-item {
+    padding: 20px 15px;
+  }
+}

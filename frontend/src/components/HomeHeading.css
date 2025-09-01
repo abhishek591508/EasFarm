@@ -1,0 +1,130 @@
+.heading-container {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #cfe7fe 0%, #e9ecef 100%);
+  border-radius: 12px;
+  margin: 30px auto;
+  max-width: 1200px;
+  box-shadow: 4px 10px 40px rgba(0, 70, 116, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.heading-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #000000, #42a5f5, #2196f3);
+  z-index: 1;
+}
+
+.home-heading {
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 15px 0;
+  letter-spacing: 1.2px;
+  line-height: 1.2;
+  position: relative;
+  padding: 0 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards 0.3s;
+}
+
+.heading-gradient {
+  background: linear-gradient(135deg, #00070dfd 0%, #42a5f5 50%, #012f55 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.heading-underline {
+  height: 4px;
+  width: 80px;
+  background: linear-gradient(90deg, #1976d2, #42a5f5);
+  margin: 0 auto 25px auto;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: lineGrow 1s ease forwards 0.8s;
+}
+
+.heading-subtitle {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: #5a5a5a;
+  margin: 0;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards 1s;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes lineGrow {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-heading {
+    font-size: 2.8rem;
+  }
+  
+  .heading-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .heading-container {
+    padding: 40px 15px;
+    margin: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-heading {
+    font-size: 2.2rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .heading-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .heading-container {
+    padding: 30px 10px;
+    margin: 15px;
+  }
+}

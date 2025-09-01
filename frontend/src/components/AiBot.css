@@ -42,38 +42,47 @@
 .ai-header button{
   padding: 5px;
   border-radius: 10px;
-  background-color: rgb(231, 187, 246);
+  background-color: #e7bbf6;
   padding: 8px;
+  transition: 0.1s;
+}
+.ai-header button:hover{
+  background-color: #fa6fff ;
+  transform: scale(1.1);
 }
 
 .ai-messages {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
-  background: #f3f4f6;
+  background: #01143a;
 }
-
 .ai-message {
   margin-bottom: 8px;
   padding: 6px 10px;
   border-radius: 8px;
   max-width: 80%;
+
 }
 
-.ai-message.user {
-  background-color: #dbeafe;
-  align-self: flex-end;
+.ai-message.userAbhishek {
+  background-color: #a0b7d4;
+  text-align: right;
+  margin-left: 40px;
 }
 
 .ai-message.bot {
-  background-color: #e5e7eb;
+  background-color: #a4c6a8;
   align-self: flex-start;
+  justify-content:start;
+
 }
 
 .ai-input {
   display: flex;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #eba7a7;
   padding-left: 10px;
+  background-color: rgb(2, 5, 34);
 }
 
 .ai-input input {
@@ -81,6 +90,8 @@
   padding: 8px;
   border: none;
   outline: none;
+  background-color: rgb(2, 5, 34);
+  color: white;
 }
 
 .ai-input button {
@@ -91,6 +102,11 @@
   border-radius: 10px;
   cursor: pointer;
   margin: 5px;
+  transition: 0.1s;
+}
+.ai-input button:hover{
+  background-color: #2317fb;
+  transform: scale(1.1);
 }
 
 @keyframes slow{

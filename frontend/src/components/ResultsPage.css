@@ -1,0 +1,88 @@
+.tool-list {
+  /* list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; */
+  background-color: rgb(255, 255, 255);
+  align-items: center; 
+  min-height: 100vh; 
+  height: 100%;
+  padding: 20px;
+}
+.tool-list h2{
+  color: rgb(4, 4, 87);
+}
+.btn-back{
+  background-color:rgb(236, 143, 143);
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-left: 2px;
+
+}
+.tool-card {
+  background: #ebffd7;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 15px 10%;
+  position: relative;
+  width: 70%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Price badge top-right */
+.tool-card .price-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #1976d2;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+/* Card main content */
+.tool-card strong {
+  font-size: 1.1rem;
+  color: #1976d2;
+}
+
+.tool-card .tool-details {
+  margin-top: 10px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Provider and contact styling */
+.tool-card .provider {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.tool-card .contact {
+  color: #555;
+}
+
+.card-box{
+  background-color: rgb(194, 184, 253);
+  padding: 10px;
+  border-radius: 10px;
+  max-height: 100vh;
+  overflow-y: auto;
+
+}
+
+.list-heading{
+  margin-left: 10%;
+}

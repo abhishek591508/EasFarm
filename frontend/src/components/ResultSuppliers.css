@@ -1,0 +1,116 @@
+.supplier-list {
+  /* list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; */
+  background-color: rgb(255, 255, 255);
+  align-items: center; 
+  min-height: 100vh; 
+  height: 100%;
+  padding: 20px;
+}
+.btn-back{
+  background-color:rgb(236, 143, 143);
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-left: 2px;
+  transition: 0.1s;
+  
+}
+.btn-back:hover{
+  background-color: rgb(240, 64, 64);
+  transform: scale(1.08);
+}
+.btn-back:active{
+    background-color: rgb(245, 149, 85);
+  }
+
+.supplier-card {
+  background: #e3fed5; /* cleaner white */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 15px 10%;
+  position: relative;
+  width: 70%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.supplier-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Price & rating badges on top-right */
+.supplier-card .price-rating {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-align: right;
+}
+
+.supplier-card .price {
+  background-color: #1976d2;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.supplier-card .rating {
+  background-color: #ffb400;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 0.85rem;
+}
+
+/* Card main content */
+.supplier-card strong {
+  font-size: 1.1rem;
+  color: #1976d2;
+}
+
+.supplier-card .details {
+  margin-top: 10px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Organic / Non-Organic */
+.supplier-card .organic {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.supplier-card .non-organic {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.card-box{
+  background-color: rgb(194, 184, 253);
+  padding: 10px;
+  border-radius: 10px;
+  max-height: 70vh;
+  overflow-y: auto;
+
+}
+
+.supplier-list h2{
+  color: rgb(0, 0, 42);
+  text-shadow: 1px 1px 10px rgb(164, 236, 251);
+}
+
+.lefty{
+  font-weight: bold;
+}

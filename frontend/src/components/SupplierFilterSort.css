@@ -1,0 +1,52 @@
+.filter-sort-container {
+  display: flex;
+  gap: 5vh;
+  justify-content: end;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filter-section{
+  display: flex;
+  flex-direction: column;
+}
+
+.sort-section {
+  display: flex;
+  flex-direction: column;
+}
+
+select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #f00707;
+  min-width: 180px;
+  font-size: 14px;
+  background-color: rgb(218, 208, 241);
+  transition: 0.1s;
+}
+select:hover{
+  background-color: white;
+  transform: scale(1.02);
+}
+
+
+.apply-btn {
+  padding: 8px 16px;
+  background-color: #15ae1a;
+  color: white;
+  border: 1px solid lightblue;
+  border-radius: 5px;
+  cursor: pointer;
+  height: fit-content;
+  margin-top: 2.5vh;
+  transition: 0.1s;
+}
+
+.apply-btn:hover {
+  background-color: #2c7902;
+  transform: scale(1.08);
+}
+.apply-btn:active{
+  background-color: #47be06;
+}

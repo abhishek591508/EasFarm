@@ -7,17 +7,24 @@ const queryChat = require('./src/routes/aiChat');
 const dbConnect = require('./src/config/db');
 const cookieParser = require('cookie-parser');
 const redisClient = require("./src/config/redis");
+const cors = require('cors');
 
+
+const app = express();
+
+app.use(cors({
+    origin:'http://localhost:5173',
+    credentials:true
+}))
 
 // https://chat.deepseek.com/a/chat/s/4b529dc7-8a93-4a2e-830d-835bf0acf909 steps to build this project
-const app = express();
 
 
 app.use(express.json());
 app.use(cookieParser());
+// 
 
-
-
+console.log(process.env.MONGODB_URI);
 app.use('/user', auth_user);
 app.use('/home', homepage);
 app.use('/service',service);

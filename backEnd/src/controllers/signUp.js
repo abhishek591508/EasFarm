@@ -26,7 +26,6 @@ const signUp = async(req, res) => {
 
         const isPhoneNumberUniq = await Farmer.findOne({ mobileNumber });
 
-
         if (isPhoneNumberUniq) {
             return res.status(400).json({
                 success: false,
@@ -36,6 +35,8 @@ const signUp = async(req, res) => {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
+        console.log(typeof emailId);
+        console.log(emailId);
         // Create new farmer document
         const farmer = await Farmer.create({
             fullName,
@@ -51,6 +52,7 @@ const signUp = async(req, res) => {
             acceptTerms,
             allowDataSharing
         });
+        //console.log(farmer);
 
         res.status(201).send({
             success: true,

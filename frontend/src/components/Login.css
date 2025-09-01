@@ -13,24 +13,31 @@
   justify-content: center;
 } */
 
+.login-div-out{
+  background-color: rgb(204, 211, 255);
+}
+
 .app {
-  background: linear-gradient(135deg, #4a67ea 0%, #b26bfa 100%);
+  background: rgb(204, 211, 255);
   width: 100%;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   /* padding: 20px; */
+  transform: scale(0.8);
+
 }
 
 .auth-container {
   width: 100%;
   max-width: 450px;
-  transform: scale(0.9); /*Here i just decreased the size of interface*/
+  /* transform: scale(0.9); Here i just decreased the size of interface */
 }
 
 .auth-card {/*white middle card*/
-  background: rgba(198, 204, 237, 0.95);
+  background: rgba(115, 128, 184, 0.95);
   border-radius: 20px;
   padding: 40px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -46,19 +53,22 @@
 
 .auth-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .auth-header h1 {
-  color: #4931d4;
+  color: #10006d;
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 8px;
   background-clip: text;
+  text-shadow: 1px 1px 2px rgb(194, 240, 255);
 }
 
 .auth-header p {
-  color: #666;
+  color: #0c0353;
+    text-shadow: 1px 1px 2px rgb(194, 240, 255);
+
   font-size: 16px;
   font-weight: 400;
 }
@@ -145,7 +155,7 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #223175 0%, #764ba2 100%);
   color: white;
   border: none;
   padding: 14px 24px;
@@ -155,7 +165,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   margin-top: 10px;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 2px 2px 5px rgba(198, 251, 255, 0.3);
 }
 
 .submit-btn:hover {
@@ -175,7 +185,8 @@
 }
 
 .auth-footer p {
-  color: #666;
+  color: #090042;
+  text-shadow: 1px 1px 3px rgb(194, 240, 255);
   font-size: 14px;
 }
 
@@ -188,6 +199,8 @@
   font-size: 14px;
   text-decoration: underline;
   transition: color 0.2s ease;
+  text-shadow: 1px 1px 5px rgb(194, 240, 255);
+
 }
 
 .toggle-btn:hover {
@@ -253,7 +266,7 @@
 .hello-farmer {
   animation: fadeInUp 0.6s ease-out;
   margin-bottom: 30px;
-  color: white;
+  color: rgb(42, 0, 179);
   text-align: center;
 }
 
@@ -273,9 +286,14 @@
   font-size: 14px;
   margin-top: 5px;
   cursor: pointer;
+    text-shadow: 1px 1px 5px rgb(194, 240, 255);
+
 }
 .ownerBtn:hover{
   color: purple;
   transform: translateY(-1px);
   transition: 0.2s ease;
+}
+.bottom-para{
+  color: #0c0353;
 }
