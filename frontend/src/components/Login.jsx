@@ -52,7 +52,7 @@ function Login() {
     if (isLogin=='login') {
       console.log('Login attempt:', { mobileNumber: formData.mobileNumber, emailId: formData.emailId, password: formData.password })
       // Add your login logic here
-      const resp = await fetch("http://localhost:5000/user/sendotp",{
+      const resp = await fetch(`${import.meta.env.VITE_API_URL}/user/sendotp`,{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({emailId:formData.emailId})
@@ -81,7 +81,7 @@ function Login() {
       console.log('Signup attempt:', payload)
       // Add your signup logic here
       try{
-        const res = await fetch('http://localhost:5000/user/signup',{
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/user/signup`,{
           method:'POST',
           headers:{'Content-Type': 'application/json'},
           body: JSON.stringify(payload)

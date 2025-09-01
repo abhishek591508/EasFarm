@@ -22,7 +22,7 @@ export default function ResultsSuppliers() {
 
       const params = new URLSearchParams(options);
       const res = await fetch(
-        `http://localhost:5000/service/getAllproduct?${params.toString()}`
+        `${import.meta.env.VITE_API_URL}/service/getAllproduct?${params.toString()}`
       );
 
       if (!res.ok) throw new Error("Failed to fetch data");

@@ -22,7 +22,7 @@ export default function AiBot({ apiEndpoint }) {
 
     try {
       // Send request to AI API
-      const res = await fetch('http://localhost:5000/query/chat', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/query/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: userMsg }),

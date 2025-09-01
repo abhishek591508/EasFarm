@@ -38,7 +38,7 @@ const OTPPage = () => {
 
     if (otpValue.length === 6) {
       try {
-        const resp = await fetch("http://localhost:5000/user/verifyotp", {
+        const resp = await fetch(`${import.meta.env.VITE_API_URL}/user/verifyotp`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include", // important for cookie/session auth

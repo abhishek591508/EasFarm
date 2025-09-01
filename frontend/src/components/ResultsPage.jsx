@@ -23,7 +23,7 @@ export default function ResultsPage() {
 
       const params = new URLSearchParams(options);
       const res = await fetch(
-        `http://localhost:5000/service/get-all-tools?${params.toString()}`
+        `${import.meta.env.VITE_API_URL}/service/get-all-tools?${params.toString()}`
       );
 
       if (!res.ok) throw new Error("Failed to fetch data");

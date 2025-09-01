@@ -107,7 +107,7 @@ export default function Home() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await fetch('http://localhost:5000/user/checkAuth', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/user/checkAuth`, {
           credentials: 'include',
         });
         const data = await res.json();
