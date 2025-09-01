@@ -13,11 +13,9 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    origin:'http://localhost:5173',
-    credentials:true
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+  credentials: true
 }))
-
-// https://chat.deepseek.com/a/chat/s/4b529dc7-8a93-4a2e-830d-835bf0acf909 steps to build this project
 
 
 app.use(express.json());
@@ -33,18 +31,14 @@ app.use('/service',service);
 app.use('/query',queryChat);
 
 
-
-
-
-
-
-
 const Initialisation = async() => {
     try {
         await Promise.all([dbConnect(), redisClient.connect()]);
 
-        app.listen(process.env.PORT, () => {
-            console.log(`Server is running at post ${process.env.port}`);
+        const PORT = process.env.PORT || 5000;
+
+        app.listen(PORT, () => {
+            console.log(`Server is running at port ${PORT}`);
         })
     } catch (err) {
         console.error('Failed to start server: ', err);
