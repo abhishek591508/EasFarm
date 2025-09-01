@@ -1,7 +1,7 @@
 // File: src/pages/OTPPage.jsx
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "./OTPPage.css";
+import "./OtpPage.css";
 import { useAuth } from "../context/AuthContext";
 
 const OTPPage = () => {
