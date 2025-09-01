@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import OtpPage from './components/OtpPage'
 import OwnerLogin from './components/OwnerLogin'
 import ResultsPage from './components/ResultsPage'
-import ResultSuppliers from './components/resultSuppliers'
+import ResultSuppliers from './components/ResultSuppliers'
 import ContactUs from './components/ContactUs'
 import AboutUs from './components/AboutUs'
 
