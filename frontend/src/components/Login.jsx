@@ -137,7 +137,7 @@ function Login() {
 
         {(isLogin === 'signup'|| isLogin==='login') && <div className="auth-card">
           <div className="auth-header">
-            <h1>{(isLogin === 'login') ? 'Welcome To EasFarm' : 'Create Account'}</h1>
+            <h1>{(isLogin === 'login') ? 'Welcome To EasFarm' : 'Create Account:'}</h1>
             <p>{(isLogin === 'login') ? 'Sign in to your account' : 'Join us today'}</p>
           </div>
 
