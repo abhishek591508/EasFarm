@@ -23,8 +23,8 @@ const OwnerRegister = () => {
 
   return (
     <div className="owner-form-container">
-      <h2>Owner Registration</h2>
-      <p>Comming soon...</p>
+      <h2>Owner Registration <br /><p>Available soon...</p></h2>
+      
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
         <input type="text" placeholder='Comming soon...' name="name" value={formData.name} onChange={handleChange} required />
