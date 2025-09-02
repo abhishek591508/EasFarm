@@ -17,7 +17,7 @@ const AboutUs = () => {
           <h2>Our Mission</h2>
           <p>
             After talking to more than a dozen farmers, we discovered a major problem: farmers often struggle to connect with nearby farmers, suppliers, manufacturers, and owners of tractors or harvesters.
-            <br />To solve this problem, we launched EasFarm, a platform that connects farmers with product and service providers. On EasFarm, farmers can: <br />
+            <br /><br />To solve this problem, we launched EasFarm, a platform that connects farmers with product and service providers. On EasFarm, farmers can: <br />
             <br /><br />
                 <b>Find nearby machine owners, manufacturers, suppliers, and more..</b>
                 <br /><b>Contact and bargain the products or services</b>
