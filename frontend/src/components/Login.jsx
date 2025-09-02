@@ -19,7 +19,7 @@ function Login() {
     state: '',
     pincode: '',
     alternateMobile: '',
-    gpsLocation:'',  //  object, not string
+    gpsLocation:'33.3,44.4',  //  object, not string
     allowDataSharing: false,
     role: 'farmer',
     acceptTerms: false
@@ -167,7 +167,7 @@ function Login() {
                     value={formData.mobileNumber}
                     onChange={handleInputChange}
                     placeholder="Enter your mobile number"
-                    // required
+                    required
                   />
                 </div>
             {isLogin == 'signup' && (
@@ -181,7 +181,7 @@ function Login() {
                     value={formData.villageOrCity}
                     onChange={handleInputChange}
                     placeholder="Enter your village or city"
-                    // required
+                    required
                   />
                 </div>
 
@@ -194,7 +194,7 @@ function Login() {
                     value={formData.district}
                     onChange={handleInputChange}
                     placeholder="Enter your district"
-                    // required
+                    required
                   />
                 </div>
 
@@ -207,7 +207,7 @@ function Login() {
                     value={formData.state}
                     onChange={handleInputChange}
                     placeholder="Enter your state"
-                    // required
+                    required
                   />
                 </div>
 
@@ -220,7 +220,7 @@ function Login() {
                     value={formData.pincode}
                     onChange={handleInputChange}
                     placeholder="Enter your pincode"
-                    // required
+                    required
                   />
                 </div>
 
@@ -237,14 +237,20 @@ function Login() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="gpsLocation">GPS Location</label>
+                  <label htmlFor="gpsLocation">GPS Location *</label>
                   <input
                     type="text"
                     id="gpsLocation"
                     name="gpsLocation"
                     value={formData.gpsLocation}
                     onChange={handleInputChange}
-                    placeholder="Enter GPS. eg - (32.04,45.21)"
+                    onBlur={() => {
+                      if (!formData.gpsLocation.trim()) {
+                        setFormData({ ...formData, gpsLocation: "30.3,30.3" });
+                      }
+                    }}
+                    placeholder="Enter GPS. eg - 32.04,45.21"
+                    required
                   />
                 </div>
 
@@ -274,7 +280,7 @@ function Login() {
                 value={formData.emailId}
                 onChange={handleInputChange}
                 placeholder="Enter your emailId"
-                // required
+                required
               />
             </div>
 
@@ -287,7 +293,7 @@ function Login() {
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="Enter your password"
-                // required
+                required
               />
             </div>
 
@@ -301,7 +307,7 @@ function Login() {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   placeholder="Confirm your password"
-                  // required
+                  required
                 />
               </div>
             )}
@@ -328,7 +334,7 @@ function Login() {
                       name="acceptTerms"
                       checked={formData.acceptTerms}
                       onChange={handleInputChange}
-                      // required
+                      required
                     />
                     <span className="checkmark"></span>
                     I accept the terms and conditions *
