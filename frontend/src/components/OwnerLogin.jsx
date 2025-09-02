@@ -23,7 +23,7 @@ const OwnerRegister = () => {
 
   return (
     <div className="owner-form-container">
-      <h2>Owner Registration <br /><p>Available soon...</p></h2>
+      <h2>Owner Registration <br /><p style={{fontSize:"smaller", color:"#cc33ff"}}>Available soon...</p></h2>
       
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
