@@ -24,9 +24,10 @@ const OwnerRegister = () => {
   return (
     <div className="owner-form-container">
       <h2>Owner Registration</h2>
+      <p>Comming soon...</p>
       <form onSubmit={handleSubmit}>
         <label>Name:</label>
-        <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+        <input type="text" placeholder='Comming soon...' name="name" value={formData.name} onChange={handleChange} required />
 
         <label>Role:</label>
         <select name="role" value={formData.role} onChange={handleChange} required>
@@ -37,10 +38,10 @@ const OwnerRegister = () => {
         </select>
 
         <label>Mobile:</label>
-        <input type="tel" name="mobile" value={formData.mobile} onChange={handleChange} required />
+        <input type="tel" placeholder='Comming soon...' name="mobile" value={formData.mobile} onChange={handleChange} required />
 
         <label>Email:</label>
-        <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        <input type="email" placeholder='Comming soon...' name="email" value={formData.email} onChange={handleChange} required />
 
         <label>City:</label>
         <input type="text" name="city" value={formData.city} onChange={handleChange} required />
