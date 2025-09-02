@@ -48,10 +48,16 @@ const otpVerify = async (req, res) => {
     const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
 
     // set token in cookie
+    // res.cookie('token', token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === 'production',
+    //   maxAge: 60 * 60 * 1000 // 1 hour
+    // });
     res.cookie('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      maxAge: 60 * 60 * 1000 // 1 hour
+          httpOnly: true,
+          secure: true,
+          sameSite: "none",
+          maxAge: 60 * 60 * 1000 // 1 hour
     });
 
     // delete OTP from redis after success
