@@ -16,10 +16,14 @@ const AboutUs = () => {
         <section className="mission-section">
           <h2>Our Mission</h2>
           <p>
-            At easFarm, we are dedicated to revolutionizing the agricultural ecosystem 
-            by creating seamless connections between farmers, suppliers, manufacturers, 
-            and machinery owners. Our platform empowers every stakeholder in the 
-            agricultural value chain to thrive and grow together.
+            After talking to more than a dozen farmers, we discovered a major problem: farmers often struggle to connect with nearby farmers, suppliers, manufacturers, and owners of tractors or harvesters.
+            <br />To solve this problem, we launched EasFarm, a platform that connects farmers with product and service providers. On EasFarm, farmers can: <br />
+            <ul>
+                <li>Find nearby machine owners, manufacturers, suppliers, and plant doctors</li>
+                <li>Compare prices</li>
+                <li>Contact and bargain the products or services</li>
+            </ul>
+            The app will be completely <u>free for farmers</u> and <u>supported by ads only</u>, making it scalable to meet growing demand and benefit from technological advancements..
           </p>
         </section>
 
