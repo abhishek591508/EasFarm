@@ -14,7 +14,8 @@ user_auth.get('/checkAuth',checkAuth)
 user_auth.post('/login', Login);
 user_auth.post('/sendotp', sendOtp);
 user_auth.post('/signup', signUp);
-user_auth.post('/logout', validUser, logout);
+// user_auth.post('/logout', validUser, logout);
+user_auth.post('/logout', logout);
 user_auth.post('/verifyotp',verifyOTP);
 
 module.exports = user_auth;

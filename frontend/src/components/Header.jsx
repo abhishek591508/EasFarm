@@ -19,7 +19,9 @@ export default function Header() {
         setIsLoggedIn(false);
         navigate("/login");
       } else {
-        alert(data.message || "Logout failed!");
+        setIsLoggedIn(false);
+        navigate("/login")
+        alert(data.message || "Logout failed on server!");
       }
     } catch (err) {
       console.error("Logout error:", err);
