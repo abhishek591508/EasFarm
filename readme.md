@@ -1,11 +1,14 @@
 🌱 EasFarm – A One-Stop Solution for Farmers
 
-        EasFarm is a digital platform built to empower farmers by connecting them with manufacturers, suppliers, and machine owners (like tractors and harvesters).
+        EasFarm is a digital platform built to empower farmers by connecting them with manufacturers, suppliers, 
+        and machine owners (like tractors and harvesters).
         Our mission is to provide transparency, accessibility, and fairness in agriculture-related services and products.
 
 🚜 Why EasFarm?
 
-    In India, farmers often face challenges in connecting with manufacturers, suppliers, and machine owners (like tractors and harvesters). Many times, they also get overcharged due to lack of transparency.
+    In India, farmers often face challenges in connecting with manufacturers, 
+    suppliers, and machine owners (like tractors and harvesters). 
+    Many times, they also get overcharged due to lack of transparency.
 
 
 
@@ -90,6 +93,7 @@ This project is licensed under the MIT License – feel free to use and improve 
           🔗 LinkedIn - 
 
 ✨ EasFarm – Bridging Farmers with the Right Resources for a Better Tomorrow! ✨
+
 
 
 
