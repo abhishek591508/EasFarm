@@ -61,7 +61,7 @@ function Login() {
               alert("Invalid email format");
               return;
             }
-            if (formData.phone && !phoneRegex.test(formData.phone)) {
+            if (formData.mobileNumber && !phoneRegex.test(formData.mobileNumber)) {
               alert("Invalid phone number");
               return
             }
@@ -83,7 +83,7 @@ function Login() {
               alert("Invalid email format");
               return;
             }
-            if (formData.phone && !phoneRegex.test(formData.phone)) {
+            if (formData.mobileNumber && !phoneRegex.test(formData.mobileNumber)) {
               alert("Invalid phone number");
               return
             }
