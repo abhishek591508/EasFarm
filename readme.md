@@ -52,7 +52,17 @@
   
   📸 Screenshots
   
-  
+
+<img width="1898" height="911" alt="Screenshot 2025-09-06 161222" src="https://github.com/user-attachments/assets/3d265a52-b169-49c8-a5d6-bee3d876b50f" />
+
+
+
+<img width="1889" height="921" alt="Screenshot 2025-09-06 161626" src="https://github.com/user-attachments/assets/5562ccf4-76ed-4296-a5da-15f91384c939" />
+
+
+
+  <img width="1893" height="907" alt="Screenshot 2025-09-06 161642" src="https://github.com/user-attachments/assets/6a10945a-c0e1-47a6-a001-c841b2427474" />
+
   
   🤝 Contributing
   
@@ -85,5 +95,6 @@ This project is licensed under the MIT License – feel free to use and improve 
           🔗 LinkedIn - 
 
 ✨ EasFarm – Bridging Farmers with the Right Resources for a Better Tomorrow! ✨
+
 
 
