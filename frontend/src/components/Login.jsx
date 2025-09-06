@@ -10,6 +10,9 @@ function Login() {
   const [isLogin, setIsLogin] = useState('login')
   const [location, setLocation] = useState('')
   const navigate = useNavigate();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[0-9]{10}$/;
+
   const [formData, setFormData] = useState({
     emailId: '',
     password: '',
@@ -145,8 +148,7 @@ function Login() {
       acceptTerms: false
     })
   }
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^[0-9]{10}$/;
+  
 
   return (
     <div className='login-div-out'>
@@ -192,7 +194,7 @@ function Login() {
                     placeholder="Enter your mobile number"
                     required
                     onBlur={() => {
-                      if (formData.phone && !phoneRegex.test(formData.phone)) {
+                      if (formData.mobileNumber && !phoneRegex.test(formData.mobileNumber)) {
                         setPhoneError("Invalid phone number");
                       } else {
                         setPhoneError("");
