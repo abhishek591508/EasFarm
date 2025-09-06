@@ -1,8 +1,10 @@
 🌱 EasFarm – A One-Stop Solution for Farmers
-    EasFarm is a digital platform built to empower farmers by connecting them with manufacturers, suppliers, and machine owners (like tractors and harvesters).
-    Our mission is to provide transparency, accessibility, and fairness in agriculture-related services and products.
+
+        EasFarm is a digital platform built to empower farmers by connecting them with manufacturers, suppliers, and machine owners (like tractors and harvesters).
+        Our mission is to provide transparency, accessibility, and fairness in agriculture-related services and products.
 
 🚜 Why EasFarm?
+
     In India, farmers often face challenges such as:
     Difficulty in finding nearby tractor or harvester owners
     Lack of transparency in pricing
@@ -11,7 +13,9 @@
 
 👉 EasFarm solves this by creating a direct bridge between farmers and product/service providers.
 
+
 ✅ Features
+
     📍 Location-based Search – View a list of nearby tractor owners, harvester owners, suppliers, and manufacturers in one click
     💰 Price Transparency – Farmers can compare prices and choose the best option
     🔗 Direct Connection – Contact suppliers, manufacturers, and machine owners without middlemen
@@ -19,6 +23,7 @@
 
 
 🏗️ Tech Stack
+
     Frontend: React.js
     Backend: Node.js, Express.js
     Database: MongoDB
@@ -69,16 +74,18 @@
 This project is licensed under the MIT License – feel free to use and improve it.
 
 👨‍💻 Author
-This Project was Made as a Team Project, by Abhishek kumar (frontend) and Ujjwal Dikshit (Backend)
 
-Abhishek Kumar
-  🎓 B.Tech IT @ NIT Srinagar
-  💡 Passionate about building real-world impactful solutions
-  🔗 LinkedIn - www.linkedin.com/in/abhishek-kumar-21731123a
-
-Ujjwal Dikshit
-  🎓 B.Tech IT @ NIT Srinagar
-  💡 Passionate about building impactful solutions
-  🔗 LinkedIn - 
+        This Project was Made as a Team Project, by Abhishek kumar (frontend) and Ujjwal Dikshit (Backend)
+        
+        Abhishek Kumar
+          🎓 B.Tech IT @ NIT Srinagar
+          💡 Passionate about building real-world impactful solutions
+          🔗 LinkedIn - www.linkedin.com/in/abhishek-kumar-21731123a
+        
+        Ujjwal Dikshit
+          🎓 B.Tech IT @ NIT Srinagar
+          💡 Passionate about building impactful solutions
+          🔗 LinkedIn - 
 
 ✨ EasFarm – Bridging Farmers with the Right Resources for a Better Tomorrow! ✨
+
