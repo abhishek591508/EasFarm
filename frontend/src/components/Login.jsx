@@ -5,6 +5,8 @@ import Header from './Header'
 import Footer from './Footer'
 
 function Login() {
+  const [phoneError, setPhoneError] = useState("");
+  const [emailError, setEmailError] = useState('')
   const [isLogin, setIsLogin] = useState('login')
   const [location, setLocation] = useState('')
   const navigate = useNavigate();
@@ -50,60 +52,76 @@ function Login() {
   const handleSubmit = async(e) => {
     e.preventDefault()
     if (isLogin=='login') {
-      console.log('Login attempt:', { mobileNumber: formData.mobileNumber, emailId: formData.emailId, password: formData.password })
-      // Add your login logic here
-      console.log("API URL:", import.meta.env.VITE_API_URL);
+            console.log('Login attempt:', { mobileNumber: formData.mobileNumber, emailId: formData.emailId, password: formData.password })
+            // Add your login logic here
+            if (formData.emailId && !emailRegex.test(formData.emailId)) { 
+              alert("Invalid email format");
+              return;
+            }
+            if (formData.phone && !phoneRegex.test(formData.phone)) {
+              alert("Invalid phone number");
+              return
+            }
+            console.log("API URL:", import.meta.env.VITE_API_URL);
 
-      const resp = await fetch(`${import.meta.env.VITE_API_URL}/user/sendotp`,{
-        method:"POST",
-        headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({emailId:formData.emailId})
-      })
-      if(resp.ok){
-        const msg = await resp.text();
-        navigate('/otpPage', {state:{emailId:formData.emailId}});
-        alert(msg);
-      }
+            const resp = await fetch(`${import.meta.env.VITE_API_URL}/user/sendotp`,{
+              method:"POST",
+              headers:{"Content-Type":"application/json"},
+              body:JSON.stringify({emailId:formData.emailId})
+            })
+            if(resp.ok){
+              const msg = await resp.text();
+              navigate('/otpPage', {state:{emailId:formData.emailId}});
+              alert(msg);
+            }
     } 
-    else if(isLogin=='signup'){
-      if (formData.password !== formData.confirmPassword) {
-        alert('Passwords do not match!')
-        return
-      }
-      if (!formData.acceptTerms) {
-        alert('Please accept the terms and conditions!')
-        return
-      }
-      const [lat, lng] = formData.gpsLocation.split(",").map(Number); // "34.0836,74.7973" → [34.0836, 74.7973]
-      const payload={
-        ...formData,
-        gpsLocation:{type:"Point", coordinates:[lng, lat]}
-      }
-      
-      console.log('Signup attempt:', payload)
-      // Add your signup logic here
-      try{
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/user/signup`,{
-          method:'POST',
-          headers:{'Content-Type': 'application/json'},
-          body: JSON.stringify(payload)
-        });
+    else if(isLogin=='signup') {
+            if (formData.emailId && !emailRegex.test(formData.emailId)) { 
+              alert("Invalid email format");
+              return;
+            }
+            if (formData.phone && !phoneRegex.test(formData.phone)) {
+              alert("Invalid phone number");
+              return
+            }
+            if (formData.password !== formData.confirmPassword) {
+              alert('Passwords do not match!')
+              return
+            }
+            if (!formData.acceptTerms) {
+              alert('Please accept the terms and conditions!')
+              return
+            }
+            const [lat, lng] = formData.gpsLocation.split(",").map(Number); // "34.0836,74.7973" → [34.0836, 74.7973]
+            const payload={
+              ...formData,
+              gpsLocation:{type:"Point", coordinates:[lng, lat]}
+            }
+            
+            console.log('Signup attempt:', payload)
+            // Add your signup logic here
+            try{
+              const res = await fetch(`${import.meta.env.VITE_API_URL}/user/signup`,{
+                method:'POST',
+                headers:{'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+              });
 
-        const data = await res.json();
+              const data = await res.json();
 
-        if(data.success){
-          alert(data.message);
-          // navigate('/login')
-          setIsLogin('login')
-        }
-        else{
-          alert(data.message || 'Signup failed');
-        }
-      }
-      catch(err){
-        console.error('Signup error:', err);
-        alert('Something went wrong! Please try again.');
-      }
+              if(data.success){
+                alert(data.message);
+                // navigate('/login')
+                setIsLogin('login')
+              }
+              else{
+                alert(data.message || 'Signup failed');
+              }
+            }
+            catch(err){
+              console.error('Signup error:', err);
+              alert('Something went wrong! Please try again.');
+            }
     }
   }
 
@@ -127,6 +145,8 @@ function Login() {
       acceptTerms: false
     })
   }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^[0-9]{10}$/;
 
   return (
     <div className='login-div-out'>
@@ -165,10 +185,21 @@ function Login() {
                     id="mobileNumber"
                     name="mobileNumber"
                     value={formData.mobileNumber}
-                    onChange={handleInputChange}
+                    onChange={(e)=>{
+                      handleInputChange(e);
+                      setPhoneError("");
+                    }}
                     placeholder="Enter your mobile number"
                     required
+                    onBlur={() => {
+                      if (formData.phone && !phoneRegex.test(formData.phone)) {
+                        setPhoneError("Invalid phone number");
+                      } else {
+                        setPhoneError("");
+                      }
+                    }}
                   />
+                  {phoneError && <p style={{ color: "#800303" }}>{phoneError}</p>}
                 </div>
             {isLogin == 'signup' && (
               <>
@@ -278,10 +309,21 @@ function Login() {
                 id="emailId"
                 name="emailId"
                 value={formData.emailId}
-                onChange={handleInputChange}
+                onChange={(e)=>{
+                  handleInputChange(e);
+                  setEmailError("");
+                }}
                 placeholder="Enter your emailId"
                 required
+                onBlur={() => { 
+                  if (formData.emailId && !emailRegex.test(formData.emailId)) { 
+                    setEmailError("Invalid email format");
+                  } else {
+                    setEmailError(""); 
+                  }
+                }}
               />
+              {emailError && <p style={{ color: "#800303" }}>{emailError}</p>}
             </div>
 
             <div className="form-group">
