@@ -94,6 +94,8 @@
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
 const redisClient = require("../config/redis");
+const farmer = require('../models/farmerSchema');
+
 
 const sendOtp = async (otp, emailId) => {
     try {
@@ -120,11 +122,16 @@ const sendOtp = async (otp, emailId) => {
         throw err;
     }
 };
-
 const otpHandler = async (req, res) => {
     try {
         const emailId = req.body.emailId;
+        const mobileNumber = req.body.mobileNumber;
         const otp = crypto.randomInt(100000, 999999).toString();
+
+        const isUserRegistered = await farmer.findOne({ mobileNumber: mobileNumber, emailId: emailId });
+        if (!isUserRegistered) {
+            return res.status(404).send("User not registered");
+        }
 
         await redisClient.set(`emailOtp:${emailId}`, otp, "EX", 300);
         await sendOtp(otp, emailId);

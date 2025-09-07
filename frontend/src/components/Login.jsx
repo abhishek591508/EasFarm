@@ -77,6 +77,10 @@ function Login() {
               navigate('/otpPage', {state:{emailId:formData.emailId}});
               alert(msg);
             }
+            else{
+              const msg = await resp.text();
+              alert(msg + " | Invalid Mobile Or Email")
+            }
     } 
     else if(isLogin=='signup') {
             if (formData.emailId && !emailRegex.test(formData.emailId)) { 
