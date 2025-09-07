@@ -70,7 +70,7 @@ function Login() {
             const resp = await fetch(`${import.meta.env.VITE_API_URL}/user/sendotp`,{
               method:"POST",
               headers:{"Content-Type":"application/json"},
-              body:JSON.stringify({emailId:formData.emailId})
+              body:JSON.stringify({emailId:formData.emailId, mobileNumber:formData.mobileNumber})
             })
             if(resp.ok){
               const msg = await resp.text();
