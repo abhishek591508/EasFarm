@@ -146,7 +146,7 @@ function Login() {
       state: '',
       pincode: '',
       alternateMobile: '',
-      gpsLocation: '',
+      gpsLocation: '33.33,44.44',
       allowDataSharing: false,
       role: 'farmer',
       acceptTerms: false
