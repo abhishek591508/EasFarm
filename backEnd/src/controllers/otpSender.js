@@ -99,6 +99,7 @@ const farmer = require('../models/farmerSchema');
 
 const sendOtp = async (otp, emailId) => {
     try {
+        console.log("55555")
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 465,
@@ -108,7 +109,8 @@ const sendOtp = async (otp, emailId) => {
                 pass: process.env.GMAILPASS
             }
         });
-
+        
+        console.log("66666")
         await transporter.sendMail({
             from: '"easFarm" <routerroute059@gmail.com>',
             to: emailId,
@@ -116,6 +118,7 @@ const sendOtp = async (otp, emailId) => {
             text: `Your OTP is ${otp}. It expires in 5 minutes.`
         });
 
+        console.log("77777")
         console.log("OTP email sent ✅");
     } catch (err) {
         console.error("Error while sending OTP email:", err);
