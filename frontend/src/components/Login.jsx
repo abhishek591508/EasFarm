@@ -79,7 +79,7 @@ function Login() {
             }
             else{
               const msg = await resp.text();
-              alert(msg + " | Invalid Mobile Or Email")
+              alert(msg + " OR Invalid Mobile Or Email")
             }
     } 
     else if(isLogin=='signup') {
