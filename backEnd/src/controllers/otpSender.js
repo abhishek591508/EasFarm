@@ -103,7 +103,7 @@ const sendOtp = async (otp, emailId) => {
         const transporter = nodemailer.createTransport({
             host: "smtp.gmail.com",
             port: 587,
-            secure: true,
+            secure: false,
             auth: {
                 user: "routerroute059@gmail.com",
                 pass: process.env.GMAILPASS
