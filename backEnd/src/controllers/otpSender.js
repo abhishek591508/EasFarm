@@ -123,18 +123,21 @@ const sendOtp = async (otp, emailId) => {
     }
 };
 const otpHandler = async (req, res) => {
-    try {
+    try {console.log("11111")
         const emailId = req.body.emailId;
         const mobileNumber = req.body.mobileNumber;
         const otp = crypto.randomInt(100000, 999999).toString();
 
+        console.log("22222")
         const isUserRegistered = await farmer.findOne({ mobileNumber: mobileNumber, emailId: emailId });
         if (!isUserRegistered) {
             return res.status(404).send("User not registered");
         }
 
+        console.log("33333")
         // await redisClient.set(`emailOtp:${emailId}`, otp, "EX", 300);
         await redisClient.set(`emailOtp:${emailId}`, otp, { EX: 300 });
+        console.log("44444")
         await sendOtp(otp, emailId);
 
         res.status(200).send(`OTP sent successfully to your email: ${emailId}`);
