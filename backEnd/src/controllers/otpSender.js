@@ -133,7 +133,8 @@ const otpHandler = async (req, res) => {
             return res.status(404).send("User not registered");
         }
 
-        await redisClient.set(`emailOtp:${emailId}`, otp, "EX", 300);
+        // await redisClient.set(`emailOtp:${emailId}`, otp, "EX", 300);
+        await redisClient.set(`emailOtp:${emailId}`, otp, { EX: 300 });
         await sendOtp(otp, emailId);
 
         res.status(200).send(`OTP sent successfully to your email: ${emailId}`);
